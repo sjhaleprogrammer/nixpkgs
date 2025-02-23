@@ -21,6 +21,7 @@
   panelSize ? null, # default: 32px
   roundedMaxWindow ? false, # default: false
   darkerColor ? false, # default = false
+  libadwaita ? true, # default = false
 }:
 
 let
@@ -147,6 +148,7 @@ lib.checkListOfEnum "${pname}: window control buttons variants" [ "normal" "alt"
         ${lib.optionalString (iconVariant != null) ("--gnome-shell -i " + iconVariant)} \
         ${lib.optionalString (panelSize != null) ("--gnome-shell -panelheight " + panelSize)} \
         ${lib.optionalString (panelOpacity != null) ("--gnome-shell -panelopacity " + panelOpacity)} \
+        ${lib.optionalString libadwaita "--libadwaita"} \
         --dest $out/share/themes
 
       jdupes --quiet --link-soft --recurse $out/share
