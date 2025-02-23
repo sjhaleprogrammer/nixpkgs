@@ -137,7 +137,6 @@ lib.checkListOfEnum "${pname}: window control buttons variants" [ "normal" "alt"
       mkdir -p $out/share/themes
 
       ./install.sh \
-        ${lib.optionalString libAdwaita "--libadwaita"} \
         ${toString (map (x: "--alt " + x) altVariants)} \
         ${toString (map (x: "--color " + x) colorVariants)} \
         ${toString (map (x: "--opacity " + x) opacityVariants)} \
@@ -146,6 +145,7 @@ lib.checkListOfEnum "${pname}: window control buttons variants" [ "normal" "alt"
         ${lib.optionalString (nautilusStyle != null) ("--nautilus " + nautilusStyle)} \
         ${lib.optionalString roundedMaxWindow "--roundedmaxwindow"} \
         ${lib.optionalString darkerColor "--darkercolor"} \
+        ${lib.optionalString libAdwaita "--libadwaita"} \
         ${lib.optionalString (iconVariant != null) ("--gnome-shell -i " + iconVariant)} \
         ${lib.optionalString (panelSize != null) ("--gnome-shell -panelheight " + panelSize)} \
         ${lib.optionalString (panelOpacity != null) ("--gnome-shell -panelopacity " + panelOpacity)} \
