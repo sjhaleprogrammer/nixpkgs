@@ -21,7 +21,7 @@
   panelSize ? null, # default: 32px
   roundedMaxWindow ? false, # default: false
   darkerColor ? false, # default = false
-  libadwaita ? true, # default = false
+  libAdwaita ? true, # default = false
 }:
 
 let
@@ -137,6 +137,7 @@ lib.checkListOfEnum "${pname}: window control buttons variants" [ "normal" "alt"
       mkdir -p $out/share/themes
 
       ./install.sh \
+        ${lib.optionalString libAdwaita "--libadwaita"} \
         ${toString (map (x: "--alt " + x) altVariants)} \
         ${toString (map (x: "--color " + x) colorVariants)} \
         ${toString (map (x: "--opacity " + x) opacityVariants)} \
@@ -148,7 +149,6 @@ lib.checkListOfEnum "${pname}: window control buttons variants" [ "normal" "alt"
         ${lib.optionalString (iconVariant != null) ("--gnome-shell -i " + iconVariant)} \
         ${lib.optionalString (panelSize != null) ("--gnome-shell -panelheight " + panelSize)} \
         ${lib.optionalString (panelOpacity != null) ("--gnome-shell -panelopacity " + panelOpacity)} \
-        ${lib.optionalString libadwaita "--libadwaita"} \
         --dest $out/share/themes
 
       jdupes --quiet --link-soft --recurse $out/share
