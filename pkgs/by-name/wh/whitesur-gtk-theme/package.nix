@@ -153,6 +153,7 @@ lib.checkListOfEnum "${pname}: window control buttons variants" [ "normal" "alt"
         --dest $out/share/themes
 
       jdupes --quiet --link-soft --recurse $out/share
+      jdupes --quiet --link-soft --recurse $out/.config
 
       runHook postInstall
     '';
