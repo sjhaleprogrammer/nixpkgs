@@ -135,6 +135,7 @@ lib.checkListOfEnum "${pname}: window control buttons variants" [ "normal" "alt"
       runHook preInstall
 
       mkdir -p $out/share/themes
+      mkdir -p $out/.config/gtk-4.0
 
       ./install.sh \
         ${toString (map (x: "--alt " + x) altVariants)} \
